@@ -1,0 +1,36 @@
+# Kompilierte Binärdateien
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+pdf-anhang-extraktor
+pdf-extraktor
+pdf-extraktor.exe
+
+# Test-Binärdateien
+*.test
+
+# Output-Verzeichnisse
+/bin/
+/dist/
+
+# Go spezifische Dateien
+/vendor/
+/go.work
+
+# Temporäre Dateien
+*.tmp
+*.bak
+*.swp
+*~
+
+# Betriebssystemspezifische Dateien
+.DS_Store
+Thumbs.db
+
+# IDE-spezifische Dateien
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
