@@ -1,68 +1,85 @@
-# PDF-Anhang-Extraktor
+# PDF Attachment Extractor
 
-Dieses Go-basierte Tool dient zur Extraktion von Anhängen aus PDF-Dateien und ist insbesondere für elektronische Rechnungen im ZUGFeRD-Format mit dem Profil XRechnung relevant. Häufig liegt in diesen E-Invoices eine XML-Datei namens "xrechnung.xml" im Anhang der PDF vor. Mit dem PDF-Anhang-Extraktor kannst du diese oder andere spezifische Anhänge bequem aus der PDF ziehen und in separaten Dateien speichern.
+This Go-based tool is designed to extract attachments from PDF files and is particularly relevant for electronic invoices in the ZUGFeRD format with the XRechnung profile. Often, these E-Invoices contain an XML file named "xrechnung.xml" as an attachment in the PDF. With the PDF Attachment Extractor, you can conveniently extract these or other specific attachments from the PDF and save them as separate files.
 
-## Anwendungsfall
+## UseCase
 
-Gerade für Anwenderinnen und Anwender, die regelmäßig E-Invoices (ZUGFeRD/XRechnung) verarbeiten, ist es oft notwendig, die XML-Struktur (z. B. "xrechnung.xml") zu extrahieren, um sie weiterzuverarbeiten oder zu validieren. Dieses Tool automatisiert den Extraktionsvorgang und spart damit Zeit und manuelle Arbeitsschritte.
+Especially for users who regularly process E-Invoices (ZUGFeRD/XRechnung), it is often necessary to extract the XML structure (e.g., "xrechnung.xml") for further processing or validation. This tool automates the extraction process, saving time and manual work steps.
 
-## Voraussetzungen
+## Prerequisites
 
 - Go ≥ 1.18
-- Alle benötigten Abhängigkeiten werden automatisch über `go.mod` verwaltet.
+- All required dependencies are automatically managed via `go.mod`.
 
 ## Installation
 
-1. Repository klonen:
+1. Clone the repository:
 
    ```bash
    git clone <repository-url>
    cd pdf-anhang-extraktor
    ```
 
-2. Abhängigkeiten installieren:
+2. Install dependencies:
 
    ```bash
    go mod tidy
    ```
 
-## Verwendung
+## Usage
 
-Um das Tool zu nutzen, führst du folgenden Befehl aus:
+To use the tool, run the following command:
 
 ```bash
-go run cmd/extract/main.go <Pfad-zur-PDF-Datei> [Name-des-Anhangs]
+go run cmd/extract/main.go <path-to-PDF-file> [attachment-name]
 ```
 
-- `<Pfad-zur-PDF-Datei>`: Pfad zu der PDF-Datei, die einen oder mehrere Anhänge enthält.
-- `[Name-des-Anhangs]` (optional): Name des spezifischen Anhangs, der extrahiert werden soll.
-  Wird kein Anhangsname angegeben, versucht das Tool automatisch, einen Anhang namens `xrechnung.xml` zu finden und zu extrahieren.
+- `<path-to-PDF-file>`: Path to the PDF file containing one or more attachments.
+- `[attachment-name]` (optional): Name of the specific attachment to be extracted.
+  If no attachment name is provided, the tool automatically attempts to find and extract an attachment named `xrechnung.xml`.
 
-### Beispiele
+### Examples
 
-1. Extraction mit Standardanhang (xrechnung.xml):
-
-   ```bash
-   go run cmd/extract/main.go Beispiel.pdf
-   ```
-
-2. Extraktion eines spezifischen Anhangs:
+1. Extraction with default attachment (xrechnung.xml):
 
    ```bash
-   go run cmd/extract/main.go Beispiel.pdf spezifischer-anhang.xml
+   go run cmd/extract/main.go Example.pdf
    ```
+
+2. Extraction of a specific attachment:
+
+   ```bash
+   go run cmd/extract/main.go Example.pdf specific-attachment.xml
+   ```
+
+## Building
+
+To build the application for all supported platforms automatically, use the provided build script:
+
+```bash
+# Make script executable
+chmod +x build.sh
+
+# Build for all platforms
+./build.sh
+
+# Or use Make
+make build-all
+```
+
+This will create binaries for all supported operating systems and architectures in the `builds/` directory.
 
 ## Tests
 
-Um die Tests auszuführen, verwende folgenden Befehl:
+To run the tests, use the following command:
 
 ```bash
 go test ./...
 ```
 
-## Kompilierung für verschiedene Betriebssysteme
+## Cross-compilation for Different Operating Systems
 
-Go ermöglicht Cross-Compiling, um Binärdateien für unterschiedliche Plattformen zu erstellen. Nachfolgend einige Beispiele:
+Go enables cross-compiling to create binaries for different platforms. Here are some examples:
 
 ### Windows
 
@@ -80,7 +97,7 @@ set GOARCH=amd64
 go build -o pdf-extraktor cmd/extract/main.go
 ```
 
-Unter Linux bzw. macOS:
+On Linux or macOS:
 
 ```bash
 GOOS=linux GOARCH=amd64 go build -o pdf-extraktor cmd/extract/main.go
@@ -94,13 +111,13 @@ set GOARCH=amd64
 go build -o pdf-extraktor cmd/extract/main.go
 ```
 
-Unter Linux bzw. macOS:
+On Linux or macOS:
 
 ```bash
 GOOS=darwin GOARCH=amd64 go build -o pdf-extraktor cmd/extract/main.go
 ```
 
-### ARM-basierte Systeme (z. B. Raspberry Pi)
+### ARM-based Systems (e.g., Raspberry Pi)
 
 ```bash
 set GOOS=linux
@@ -108,10 +125,14 @@ set GOARCH=arm
 go build -o pdf-extraktor cmd/extract/main.go
 ```
 
-Die erstellten Binärdateien können anschließend ohne Go-Installation auf den Zielsystemen ausgeführt werden.
+The created binaries can then be executed on target systems without a Go installation.
 
-## Hinweise
+## Notes
 
-- Stelle sicher, dass die PDF-Datei tatsächlich einen Anhang (z. B. `xrechnung.xml`) enthält.  
-- Wird kein Anhangsname angegeben, so sucht das Programm automatisch nach `xrechnung.xml`.
-- Bei Fragen oder Problemen kannst du dich gerne an die Entwickler wenden.
+- Make sure the PDF file actually contains an attachment (e.g., `xrechnung.xml`).
+- If no attachment name is specified, the program automatically searches for `xrechnung.xml`.
+- For questions or issues, feel free to contact the developers.
+
+## Language Versions
+
+- [German Version (Deutsche Version)](README_DE.md)
