@@ -16,7 +16,7 @@ Gerade für Anwenderinnen und Anwender, die regelmäßig E-Invoices (ZUGFeRD/XRe
 1. Repository klonen:
 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/mmuyakwa/PDF-Anhang-Extraktor.git
    cd pdf-anhang-extraktor
    ```
 
